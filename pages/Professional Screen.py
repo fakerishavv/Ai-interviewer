@@ -54,7 +54,7 @@ def save_vector(text):
     text_splitter = NLTKTextSplitter()
     texts = text_splitter.split_text(text)
      # Create emebeddings
-    embeddings = OpenAIEmbeddings(openai_api_key= "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")
+    embeddings = OpenAIEmbeddings(openai_api_key= st.secrets['open-ai'])
     docsearch = FAISS.from_texts(texts, embeddings)
     return docsearch
 
@@ -82,7 +82,7 @@ def initialize_session_state_jd():
     if "jd_guideline" not in st.session_state:
         llm = ChatOpenAI(
         model_name = "gpt-3.5-turbo",
-            openai_api_key="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",
+            openai_api_key=st.secrets['open-ai'],
         temperature = 0.8,)
         st.session_state.jd_guideline = RetrievalQA.from_chain_type(
             llm=llm,
@@ -92,7 +92,7 @@ def initialize_session_state_jd():
     if "jd_screen" not in st.session_state:
         llm = ChatOpenAI(
             model_name="gpt-3.5-turbo",
-            openai_api_key="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",
+            openai_api_key=st.secrets['open-ai'],
             temperature=0.8, )
         PROMPT = PromptTemplate(
             input_variables=["history", "input"],
@@ -120,7 +120,7 @@ def initialize_session_state_jd():
         llm = ChatOpenAI(
             model_name="gpt-3.5-turbo",
             temperature=0.8,
-            openai_api_key="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",
+            openai_api_key=st.secrets['open-ai'],
         )
         st.session_state.jd_feedback = ConversationChain(
             prompt=PromptTemplate(input_variables=["history", "input"], template=templates.feedback_template),

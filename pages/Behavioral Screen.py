@@ -74,7 +74,7 @@ def embeddings(text: str):
     text_splitter = NLTKTextSplitter()
     texts = text_splitter.split_text(text)
     # Create emebeddings
-    embeddings = OpenAIEmbeddings(openai_api_key= "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")
+    embeddings = OpenAIEmbeddings(openai_api_key= st.secrets['open-ai'])
     docsearch = FAISS.from_texts(texts, embeddings)
     retriever = docsearch.as_retriever(search_tupe='similarity search')
     return retriever
@@ -101,7 +101,7 @@ def initialize_session_state():
     if "guideline" not in st.session_state:
         llm = ChatOpenAI(
             model_name="gpt-3.5-turbo",
-            openai_api_key="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",
+            openai_api_key=st.secrets['open-ai'],
             temperature=0.8, )
         st.session_state.guideline = RetrievalQA.from_chain_type(
             llm=llm,
@@ -112,7 +112,7 @@ def initialize_session_state():
     if "conversation" not in st.session_state:
         llm = ChatOpenAI(
         model_name = "gpt-3.5-turbo",
-            openai_api_key="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",
+            openai_api_key=st.secrets['open-ai'],
         temperature = 0.8,)
         PROMPT = PromptTemplate(
             input_variables=["history", "input"],
@@ -138,7 +138,7 @@ def initialize_session_state():
     if "feedback" not in st.session_state:
         llm = ChatOpenAI(
         model_name = "gpt-3.5-turbo",
-            openai_api_key="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",
+            openai_api_key=st.secrets['open-ai'],
         temperature = 0.5,)
         st.session_state.feedback = ConversationChain(
             prompt=PromptTemplate(input_variables = ["history", "input"], template = templates.feedback_template),
