@@ -193,7 +193,7 @@ if position and resume:
         st.stop()
     else:
         with answer_placeholder:
-            voice: bool = st.checkbox("verbose mode ")
+            voice: bool = st.checkbox("verbose")
             if voice:
                 answer = audio_recorder(pause_threshold=2, sample_rate=44100)
                 #st.warning("An UnboundLocalError will occur if the microphone fails to record.")

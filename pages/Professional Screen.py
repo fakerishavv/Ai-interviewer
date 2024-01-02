@@ -37,12 +37,13 @@ with st.expander("""Why did I encounter errors when I tried to talk to the AI In
     This is because the app failed to record. Make sure that your microphone is connected and that you have given permission to the browser to access your microphone.""")
 
 jd = st.text_area("Please enter the job description here (If you don't have one, enter keywords, such as PostgreSQL or Python instead): ")
-auto_play = st.checkbox("verbose mode")
+auto_play = st.checkbox("verbose")
 
 #st.toast("4097 tokens is roughly equivalent to around 800 to 1000 words or 3 minutes of speech. Please keep your answer within this limit.")
 
 @dataclass
 class Message:
+    """class for keeping track of interview history."""
     """class for keeping track of interview history."""
     origin: Literal["human", "ai"]
     message: str
@@ -184,7 +185,7 @@ if jd:
         st.stop()
     else:
         with answer_placeholder:
-            voice: bool = st.checkbox("verbose mode")
+            voice: bool = st.checkbox("verbose mode ")
             if voice:
                 pass
 
