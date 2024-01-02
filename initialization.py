@@ -12,11 +12,10 @@ from prompts.prompt_selector import prompt_sector
 import openai
 import os
 
-openai.api_key = st.secrets['open-ai']
+a = st.secrets['open-ai']
+print("for logs ",a)
+openai.api_key = a
 
-a =os.getenv("OPENAI_API_KEY")
-
-print("from new ",a)
 def embedding(text):
     """embeddings"""
     text_splitter = NLTKTextSplitter()
@@ -59,7 +58,6 @@ def initialize_session_state(template=None, position=None):
     st.session_state.token_count = 0
     #if "guideline" not in st.session_state:
     llm = ChatOpenAI(
-
             model_name="gpt-3.5-turbo",
             temperature=0.6, )
     st.session_state.guideline = RetrievalQA.from_chain_type(
