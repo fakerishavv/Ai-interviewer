@@ -7,7 +7,7 @@ import openai
 import os
 
 im = Image.open("icon.png")
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = st.secrets['open-ai']
 st.set_page_config(page_title = "AI Interviewer", layout = "centered",page_icon=im)
 
 home_title = "AI Interviewer"
