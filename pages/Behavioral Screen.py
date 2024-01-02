@@ -39,7 +39,7 @@ with st.expander("""Why did I encounter errors when I tried to talk to the AI In
 
 st.markdown("""\n""")
 jd = st.text_area("""Please enter the job description here (If you don't have one, enter keywords, such as "communication" or "teamwork" instead): """)
-auto_play = st.checkbox("Let AI interviewer speak! (Please don't switch during the interview)")
+auto_play = st.checkbox("verbose mode ")
 st.toast("4097 tokens is roughly equivalent to around 800 to 1000 words or 3 minutes of speech. Please keep your answer within this limit.")
 
 @dataclass
@@ -205,7 +205,7 @@ if jd:
         st.stop()
     else:
         with answer_placeholder:
-            voice: bool = st.checkbox("I would like to speak with AI Interviewer!")
+            voice: bool = st.checkbox("verbose mode ")
             if voice:
                 # answer = audio_recorder(pause_threshold=2.5, sample_rate=44100)
                 # #st.warning("An UnboundLocalError will occur if the microphone fails to record.")

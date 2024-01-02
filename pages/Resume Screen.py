@@ -41,7 +41,7 @@ with st.expander("""Why did I encounter errors when I tried to upload my resume?
 st.markdown("""\n""")
 position = st.selectbox("Select the position you are applying for", ["Data Analyst", "Software Engineer", "Marketing"])
 resume = st.file_uploader("Upload your resume", type=["pdf"])
-auto_play = st.checkbox("Let AI interviewer speak! (Please don't switch during the interview)")
+auto_play = st.checkbox("verbose mode ")
 
 #st.toast("4097 tokens is roughly equivalent to around 800 to 1000 words or 3 minutes of speech. Please keep your answer within this limit.")
 
@@ -193,7 +193,7 @@ if position and resume:
         st.stop()
     else:
         with answer_placeholder:
-            voice: bool = st.checkbox("I would like to speak with AI Interviewer!")
+            voice: bool = st.checkbox("verbose mode ")
             if voice:
                 answer = audio_recorder(pause_threshold=2, sample_rate=44100)
                 #st.warning("An UnboundLocalError will occur if the microphone fails to record.")
