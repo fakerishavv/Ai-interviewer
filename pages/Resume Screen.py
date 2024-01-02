@@ -24,7 +24,6 @@ import nltk
 import openai
 import os
 
-openai.api_key = st.secrets['open-ai']
 
 def load_lottiefile(filepath: str):
     with open(filepath, "r") as f:
@@ -91,6 +90,7 @@ def initialize_session_state_resume():
     if "resume_guideline" not in st.session_state:
         llm = ChatOpenAI(
         model_name = "gpt-3.5-turbo",
+            openai_api_key="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",
         temperature = 0.5,)
 
         st.session_state.resume_guideline = RetrievalQA.from_chain_type(
@@ -101,6 +101,7 @@ def initialize_session_state_resume():
     if "resume_screen" not in st.session_state:
         llm = ChatOpenAI(
             model_name="gpt-3.5-turbo",
+            openai_api_key="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",
             temperature=0.7, )
 
         PROMPT = PromptTemplate(
@@ -129,6 +130,7 @@ def initialize_session_state_resume():
     if "resume_feedback" not in st.session_state:
         llm = ChatOpenAI(
             model_name="gpt-3.5-turbo",
+            openai_api_key="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",
             temperature=0.5,)
         st.session_state.resume_feedback = ConversationChain(
             prompt=PromptTemplate(input_variables=["history","input"], template=templates.feedback_template),

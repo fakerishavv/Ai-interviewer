@@ -23,7 +23,6 @@ from prompts.prompts import templates
 # from IPython.display import Audio
 import openai
 
-openai.api_key = st.secrets['open-ai']
 def load_lottiefile(filepath: str):
 
     '''Load lottie animation file'''
@@ -102,6 +101,7 @@ def initialize_session_state():
     if "guideline" not in st.session_state:
         llm = ChatOpenAI(
             model_name="gpt-3.5-turbo",
+            openai_api_key="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",
             temperature=0.8, )
         st.session_state.guideline = RetrievalQA.from_chain_type(
             llm=llm,
@@ -112,6 +112,7 @@ def initialize_session_state():
     if "conversation" not in st.session_state:
         llm = ChatOpenAI(
         model_name = "gpt-3.5-turbo",
+            openai_api_key="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",
         temperature = 0.8,)
         PROMPT = PromptTemplate(
             input_variables=["history", "input"],
@@ -137,6 +138,7 @@ def initialize_session_state():
     if "feedback" not in st.session_state:
         llm = ChatOpenAI(
         model_name = "gpt-3.5-turbo",
+            openai_api_key="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",
         temperature = 0.5,)
         st.session_state.feedback = ConversationChain(
             prompt=PromptTemplate(input_variables = ["history", "input"], template = templates.feedback_template),
